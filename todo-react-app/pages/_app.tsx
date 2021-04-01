@@ -1,7 +1,8 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import "todomvc-app-css/index.css";
 
-const HOST = process.env.NEXT_PUBLIC_DB_HOST;
+//const HOST = process.env.NEXT_PUBLIC_DB_HOST;
+const HOST = "https://wild-snowflake.ap-south-1.aws.cloud.dgraph.io";
 
 const client = new ApolloClient({
   uri: `${HOST}/graphql`,

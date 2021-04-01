@@ -24,7 +24,10 @@ import UPDATE_TODO, {
 export default function Home() {
   const [todo, setTodo] = useState("");
   const { loading, error, data } = useQuery(GET_TODOS);
-  const [addTodo] = useMutation<QueryData, QueryVars>(ADD_TODO);
+  const [addTodo, { loading: addLoading, error: addError }] = useMutation<
+    QueryData,
+    QueryVars
+  >(ADD_TODO);
   const [deleteTodo] = useMutation<DeleteData, DeleteVars>(DELETE_TODO);
   const [updateTodo] = useMutation<UpdateData, UpdateVars>(UPDATE_TODO);
 
@@ -121,7 +124,11 @@ export default function Home() {
         onKeyDown={handleNewTodoKeyDown}
       />
       <section className="main">
-        <ul className="todo-list">{todoItems}</ul>
+        <ul className="todo-list">
+          {addError && <p>Error :( please try again</p>}
+          {todoItems}
+          {addLoading && <p>Loading...</p>}
+        </ul>
       </section>
     </>
   );
